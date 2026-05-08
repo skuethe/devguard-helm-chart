@@ -72,6 +72,21 @@ kyvernoPolicy:
 api:
   replicaCount: 1
   ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.3.0"
+  resources:
+    limits:
+      cpu: "2"
+      memory: 2048Mi
+    requests:
+      cpu: 100m
+      memory: 1024Mi
+  migrate:
+    resources:
+      limits:
+        cpu: "2"
+        memory: 3048Mi
+      requests:
+        cpu: 100m
+        memory: 1548Mi
   csaf:
     ######### CSAF Keys
     # needs to contain keys: "passphrase", "privateKey", "publicKey", "fingerprint"
@@ -169,6 +184,13 @@ web:
   # needs to match the setting in the kratos.yaml
   registrationEnabled: true
   replicaCount: 1
+  resources:
+    limits:
+      cpu: "0.5"
+      memory: 1024Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   image:
     # Accepts either a full image string (e.g. ghcr.io/l3montree-dev/devguard-web:0.13.0)
     # or an object with repository/tag/digest/pullPolicy.

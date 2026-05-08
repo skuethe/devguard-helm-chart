@@ -114,12 +114,7 @@ spec:
               port: http
             initialDelaySeconds: 10
           resources:
-            limits:
-              cpu: "0.5"
-              memory: 1024Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
+            {{- toYaml .Values.web.resources | nindent 12 }}
           volumeMounts:
           - mountPath: /tmp
             name: tmp-dir
