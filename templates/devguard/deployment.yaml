@@ -66,12 +66,7 @@ spec:
           image: {{ $apiImage | quote }}
           imagePullPolicy: {{ $apiImagePullPolicy }}
           resources:
-            limits:
-              cpu: "2"
-              memory: 3048Mi
-            requests:
-              cpu: 100m
-              memory: 1548Mi
+            {{- toYaml .Values.api.migrate.resources | nindent 12 }}
           env:
           - name: POSTGRES_DB
             value: devguard
@@ -256,12 +251,7 @@ spec:
               port: http
             initialDelaySeconds: 10
           resources:
-            limits:
-              cpu: "2"
-              memory: 2048Mi
-            requests:
-              cpu: 100m
-              memory: 1024Mi
+            {{- toYaml .Values.api.resources | nindent 12 }}
           volumeMounts:
           - mountPath: /github-app-private-key
             name: github-app-private-key
