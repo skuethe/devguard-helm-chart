@@ -89,6 +89,44 @@ spec:
           volumeMounts:
           - mountPath: /tmp
             name: tmp-dir
+        - name: "devguard-encryption-migration"
+          securityContext:
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsUser: 53111
+            runAsNonRoot: true
+            capabilities:
+              drop:
+              - ALL
+          image: {{ $apiImage | quote }}
+          imagePullPolicy: {{ $apiImagePullPolicy }}
+          resources:
+            {{- toYaml .Values.api.migrate.resources | nindent 12 }}
+          env:
+          - name: POSTGRES_DB
+            value: devguard
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: postgres-password
+                name: db-secret
+          - name: POSTGRES_USER
+            value: devguard
+          - name: POSTGRES_HOST
+            value: postgresql
+          - name: POSTGRES_PORT
+            value: "5432"
+          - name: APP_SIDE_ENCRYPTION_KEY_PATH
+            value: /encryption/key
+          command: ["devguard-cli", "encryption", "migration"]
+          volumeMounts:
+          - mountPath: /tmp
+            name: tmp-dir
+          - mountPath: /encryption
+            name: encryption-key
+            readOnly: true
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -230,6 +268,8 @@ spec:
           - name: ENVIRONMENT
             value: {{ .Values.api.errorTracking.environment | quote }}
         {{- end }}
+          - name: APP_SIDE_ENCRYPTION_KEY_PATH
+            value: /encryption/key
           - name: TRACES_SAMPLE_RATE
             value: {{ .Values.api.tracing.sampleRate | quote }}
         {{- if .Values.api.tracing.enabled }}
@@ -269,6 +309,9 @@ spec:
           {{- end }}
           - mountPath: /tmp
             name: tmp-dir
+          - mountPath: /encryption
+            name: encryption-key
+            readOnly: true
         {{- if .Values.api.tracing.enabled }}
         - name: otel-collector
           image: "{{ .Values.api.tracing.spanMetrics.image.repository }}:{{ .Values.api.tracing.spanMetrics.image.tag }}"
@@ -321,6 +364,9 @@ spec:
         secret:
           secretName: {{ .Values.api.csaf.existingCsafSecretName }}
       {{- end }}
+      - name: encryption-key
+        secret:
+          secretName: devguard-encryption-key
       # Vulndb updates are downloaded to tmp
       - name: tmp-dir
         emptyDir:
