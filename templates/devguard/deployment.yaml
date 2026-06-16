@@ -161,6 +161,8 @@ spec:
             value: {{ .Values.api.ciComponentBase | quote }}
           - name: FRONTEND_URL
             value: {{ printf "%s://%s" $protocol $host.host }}
+          - name: PROFILE
+            value: {{ .Values.api.debug.profile | quote }}
           - name: INSTANCE_DOMAIN
             {{- if .Values.api.ingress.enabled }}
             value: {{ printf "%s://%s" $apiProtocol $apiHost.host }}
