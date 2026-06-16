@@ -71,7 +71,7 @@ kyvernoPolicy:
 ######
 api:
   replicaCount: 1
-  ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.4.0"
+  ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.6.0"
   resources:
     limits:
       cpu: "2"
@@ -109,7 +109,7 @@ api:
     repository: ghcr.io/l3montree-dev/devguard
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.5.1
+    tag: v1.6.0
   imagePullSecrets: []
   errorTracking:
     # https://<your-error-tracking-dsn>
@@ -197,10 +197,10 @@ web:
     repository: ghcr.io/l3montree-dev/devguard-web
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.5.0
+    tag: v1.6.0
   imagePullSecrets: []
 
-  ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.4.0"
+  ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.6.0"
   devguardApiUrl: "http://devguard-api-service:8080"
   devguardApiUrlPublicInternet: ""
   privacyPolicyLink: ""
@@ -249,7 +249,7 @@ postgresql:
     repository: ghcr.io/l3montree-dev/devguard/postgresql
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.5.0
+    tag: v1.6.0
   pvc:
     size: 21Gi
   podAnnotations: {}
