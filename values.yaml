@@ -111,7 +111,7 @@ api:
     repository: ghcr.io/l3montree-dev/devguard
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.6.0
+    tag: v1.6.1
   imagePullSecrets: []
   errorTracking:
     # https://<your-error-tracking-dsn>
@@ -199,7 +199,7 @@ web:
     repository: ghcr.io/l3montree-dev/devguard-web
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.6.0
+    tag: v1.6.1
   imagePullSecrets: []
 
   ciComponentBase: "https://gitlab.com/l3montree/devguard/-/raw/v1.6.0"

@@ -163,6 +163,11 @@ spec:
             value: {{ printf "%s://%s" $protocol $host.host }}
           - name: PROFILE
             value: {{ .Values.api.debug.profile | quote }}
+          - name: PPROF_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: devguard-pprof-password
+                key: password
           - name: INSTANCE_DOMAIN
             {{- if .Values.api.ingress.enabled }}
             value: {{ printf "%s://%s" $apiProtocol $apiHost.host }}
