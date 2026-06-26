@@ -5,6 +5,7 @@ home: https://devguard.org
 icon: https://raw.githubusercontent.com/l3montree-dev/devguard-documentation/main/public/android-chrome-512x512.png
 keywords:
   - security
+  - developer-security-platform
   - vulnerability-management
   - devops
   - supply-chain-security
