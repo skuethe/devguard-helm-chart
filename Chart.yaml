@@ -1,6 +1,26 @@
 apiVersion: v2
 name: devguard
-description: A Helm chart for DevGuard
+description: A Helm chart for DevGuard — open-source software supply chain security, vulnerability management, and compliance.
+home: https://devguard.org
+icon: https://raw.githubusercontent.com/l3montree-dev/devguard-documentation/main/public/android-chrome-512x512.png
+keywords:
+  - security
+  - vulnerability-management
+  - devops
+  - supply-chain-security
+  - attestations
+  - in-toto
+  - csaf
+  - scanning
+  - compliance
+sources:
+  - https://github.com/l3montree-dev/devguard
+  - https://github.com/l3montree-dev/devguard-helm-chart
+  - https://docs.devguard.org
+maintainers:
+  - name: L3montree GmbH
+    email: info@l3montree.com
+    url: https://l3montree.com
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -20,4 +40,4 @@ version: 1.7.0
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: v1.7.0
+appVersion: "v1.7.0"
