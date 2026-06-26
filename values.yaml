@@ -354,9 +354,15 @@ observability:
     interval: 30s
     scrapeTimeout: 10s
   grafanaDashboard:
-    # Set to true to deploy a Grafana dashboard ConfigMap for span metrics
-    # Requires the Grafana sidecar to watch for ConfigMaps with label grafana_dashboard=1
+    # Set to true to deploy Grafana dashboard ConfigMaps for span metrics and postgresql
+    # Requires the Grafana sidecar to watch for ConfigMaps with the label you can configure below
     enabled: false
+
+    # The label name which the Grafana sidecar is searching for. Defaults to "grafana_dashboard"
+    # labelName: "grafana_dashboard"
+    # The label value which the Grafana sidecar is searching for. Defaults to "1"
+    # labelValue: "1"
+
   api:
     metrics:
       # Path of the metrics endpoint exposed by the DevGuard API
