@@ -4,6 +4,17 @@ All notable changes to the DevGuard Helm chart are documented here.
 
 For API and web frontend changes see the [main DevGuard CHANGELOG](https://github.com/l3montree-dev/devguard/blob/main/CHANGELOG.md).
 
+## [v1.8.0] — 2026-07-06
+
+First release under the shared [versioning policy](https://github.com/l3montree-dev/devguard/blob/main/versioning.md): major/minor versions are now synchronized across devguard, devguard-web, the Helm chart, and CI components.
+
+### Changed
+
+- Improved GitHub Actions release workflow to use the job token for release creation
+- Minor GitLab CI pipeline cleanup
+
+---
+
 ## [v1.7.0] — 2026-06-19
 
 ### Added
