@@ -47,6 +47,17 @@ kratos:
     enabled: true
     # Default: every 10 minutes.
     schedule: "*/10 * * * *"
+
+  # Allows to set additional environment variables on the kratos deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
+
 mail:
   # needs to contain key: "uri". Format should be like: smtps://<user>@<your-domain.com>:<secret>@<mail-server.de>:465/?skip_ssl_verify=false
   existingSMTPConnectionUriSecret: ""
@@ -183,6 +194,16 @@ api:
     targetCPUUtilizationPercentage: 80
     # targetMemoryUtilizationPercentage: 80
 
+  # Allows to set additional environment variables on the api deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
+
 
 ################################################################################################################################################
 ## DevGuard Web Frontend Settings
@@ -220,6 +241,16 @@ web:
   errorTracking:
     # https://<your-error-tracking-dsn>
     dsn: ""
+
+  # Allows to set additional environment variables on the web deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
 
   ingress:
     enabled: true
@@ -336,6 +367,16 @@ postgresql:
     requests:
       cpu: 1000m
       memory: 2056Mi
+
+  # Allows to set additional environment variables on the postgresql statefulset
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
 
 
 ################################################################################################################################################
