@@ -8,8 +8,8 @@
 kratos:
   image:
     repository: oryd/kratos
-    tag: "v25.4.0-distroless"
-    digest: "sha256:368667ee3713797f86ddec669c36751f6484c7d675c78fd27c795b2e79271c31"
+    tag: "v26.2.0-distroless"
+    digest: "sha256:481bfc3022e5427ffb94570eef84480b99c9f8158388378c57df8c1a4a104b3d"
     pullPolicy: IfNotPresent
   webauthn:
     enabled: false
@@ -56,6 +56,16 @@ kratos:
   # - a data entry named "secretsCookie" with the corresponding secret used for cookie encryption as value
   # - a data entry named "secretsCipher" with the corresponding secret used for cipher as value
   useExistingSecret: false
+  
+  # Allows to set additional environment variables on the kratos deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
 
 mail:
   # needs to contain key: "uri". Format should be like: smtps://<user>@<your-domain.com>:<secret>@<mail-server.de>:465/?skip_ssl_verify=false
@@ -206,6 +216,17 @@ api:
   # - the secret name must match "devguard-pprof-password"
   # - a data entry named "password" with the corresponding pprof password as value
   useExistingPprofPasswordSecret: false
+  
+  # Allows to set additional environment variables on the api deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
+
 
 ################################################################################################################################################
 ## DevGuard Web Frontend Settings
@@ -243,6 +264,16 @@ web:
   errorTracking:
     # https://<your-error-tracking-dsn>
     dsn: ""
+
+  # Allows to set additional environment variables on the web deployment
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
 
   ingress:
     enabled: true
@@ -376,6 +407,16 @@ postgresql:
   # - the secret name must match "kratos-db-secret"
   # - a data entry named "password" with the corresponding password for the "kratos" database user as value
   useExistingKratosDatabaseSecret: false
+  
+  # Allows to set additional environment variables on the postgresql statefulset
+  # Expects "key: value" definitions.
+  # The value is parsed through the `tpl` function, so it allows to reference other values
+  # 
+  # Example:
+  # additionalEnvs:
+  #   TEST_CHART_VERSION: "{{ .Chart.Version }}"
+  #   MY_ENV_VAR: "my-value"
+  additionalEnvs: []
 
 
 ################################################################################################################################################
